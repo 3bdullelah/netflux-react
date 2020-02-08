@@ -1,21 +1,20 @@
 import React from 'react';
-import {BrowserRouter, Route} from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom';
 
-import HomePage from './pages/HomePage'
-import Movies from './pages/Movies';
-import Shows from './pages/Shows';
-
-
-// import data
-import data from './data/movies.json'
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Details from './pages/Detail';
+import HomePage from './pages/HomePage';
+import CategoryPage from './pages/CategoryPage';
+import Details from './pages/Details';
+import SearchPage from './pages/searchPage';
+
+import data from './data/movies.json';
 
 class App extends React.Component {
   state = {
     movies: data
   };
+
   render() {
     return (
       <BrowserRouter>
@@ -26,30 +25,54 @@ class App extends React.Component {
               <Route
                 exact
                 path="/"
-                render={props => {
-                  return <HomePage {...props} movies={this.state.movies} />;
-                }}
+                render={props => (
+                  <HomePage {...props} movies={this.state.movies} />
+                )}
               />
 
               <Route
                 exact
-                path="/Movies"
-                render={props => {
-                  return <Movies {...props} movies={this.state.movies} />;
-                }}
+                path="/movies"
+                render={props => (
+                  <CategoryPage
+                    {...props}
+                    type="Film"
+                    typeText="أفلام"
+                    optionText="نوع الفيلم"
+                    movies={this.state.movies}
+                  />
+                )}
               />
 
               <Route
                 exact
-                path="/Shows"
-                render={props => {
-                  return <Shows {...props} movies={this.state.movies} />;
-                }}
+                path="/shows"
+                render={props => (
+                  <CategoryPage
+                    {...props}
+                    type="Show"
+                    typeText="المسلسلات"
+                    optionText="نوع المسلسل"
+                    movies={this.state.movies}
+                  />
+                )}
+              />
+
+              <Route
+                exact
+                path="/details/:id"
+                render={props => (
+                  <Details {...props} movies={this.state.movies} />
+                )}
+              />
+              <Route
+                exact
+                path="/search/:keyword"
+                render={props => (
+                  <SearchPage {...props} movies={this.state.movies} />
+                )}
               />
             </>
-            <Route exact path="/details/:id" render={props =>{
-              return <Details {...props} movies={this.state.movies} />;
-            }}/>
             <Footer />
           </div>
         </div>

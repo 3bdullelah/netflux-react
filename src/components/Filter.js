@@ -16,8 +16,11 @@ class Filter extends React.Component {
           <section className="section filter">
             <div className="container">
               <form>
-                <lable className="movieTypeLabel">{this.props.type}</lable>
-                <select className="movieTypeSelect" onChange={this.onChangeHandler}>
+                <label className="movieTypeLabel">{this.props.type}</label>
+                <select
+                  className="movieTypeSelect"
+                  onChange={this.onChangeHandler}
+                >
                   <option value="">{this.props.optionText}</option>
                   <option value="Action">اكشن</option>
                   <option value="Thriller">الغموض</option>

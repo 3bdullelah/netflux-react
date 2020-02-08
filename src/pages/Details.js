@@ -1,6 +1,6 @@
 import React from 'react'
 
-export class Detail extends React.Component {
+export class Details extends React.Component {
          render() {
              const movieId = this.props.match.params.id;
              const movie = this.props.movies.find(movie => movie.posterPath.includes(movieId))
@@ -41,4 +41,4 @@ export class Detail extends React.Component {
          }
        }
 
-export default Detail
+export default Details
