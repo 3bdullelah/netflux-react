@@ -5,11 +5,7 @@ const MovieGrid = props => {
   const movies = props.movies.slice(0, props.limit)
   const movieList = movies.map(movie => {
     return (
-      <Movie
-        key={movie.posterPath}
-        image={movie.posterPath}
-        title={movie.originalTitle}
-      />
+      <Movie key={movie.posterPath} movie={movie} />
     );
   });
   return (

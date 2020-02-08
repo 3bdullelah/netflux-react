@@ -1,33 +1,18 @@
 import React from 'react';
-import Header from '../components/Header'
-import Hero from '../components/Hero'
-import MovieSuggestion from '../components/MovieSuggestions'
-import Footer from '../components/Footer'
-import NewMovies from '../components/NewMovies'
-import NewShows from '../components/NewShows'
-import MostViwed from '../components/MostViwed';
+import Hero from '../components/Hero';
+import MovieGrid from '../components/MovieGrid';
 
-
-// import data
-import data from '../data/movies.json'
+import { suggested, mostViwed, recentRelease } from '../utils/helper';
 
 class HomePage extends React.Component {
-
-  state = {
-    movies: data,
-  };
-
   render() {
-    console.log(data)
     return (
       <>
-        <Header />
         <Hero />
-        <MovieSuggestion movies={this.state.movies} />
-        <MostViwed movies={this.state.movies} />
-        <NewShows movies={this.state.movies} />
-        <NewMovies movies={this.state.movies} />
-        <Footer movies={this.state.movies} />
+        <MovieGrid gridType="is-suggested" title="إقتراحتنا لك" movies={suggested(this.props.movies)} limit={4} />
+        <MovieGrid gridType="is-suggested" title="الأكثر مشاهدة" movies={mostViwed(this.props.movies)} limit={4} />
+        <MovieGrid gridType="is-movies" title="أحدث المسلسلات" movies={recentRelease(this.props.movies, 'Show')} limit={4} />
+        <MovieGrid gridType="is-movies" title="أحدث الأفلام" movies={recentRelease(this.props.movies, 'Film')} limit={8} />
       </>
     );
   }

@@ -1,26 +1,14 @@
 // import react
 import React from 'react';
-
+import {NavLink} from 'react-router-dom'
 
 // create component
 const MenuBar = () => {
   return (
     <ul className="navbar-menu">
-      <li>
-        <a href="#" className="navbar-item active">
-          الرئيسية
-        </a>
-      </li>
-      <li>
-        <a href="#" className="navbar-item">
-          الافلام
-        </a>
-      </li>
-      <li>
-        <a href="#" className="navbar-item">
-          المسلسلات
-        </a>
-      </li>
+      <li><NavLink  className={`navbar-item`} exact to="/">الرئيسية</NavLink></li>
+      <li><NavLink  className="navbar-item" exact to="/movies">الافلام</NavLink></li>
+      <li><NavLink  className="navbar-item" exact to="/shows"> المسلسلات</NavLink></li>
     </ul>
   );
 };
